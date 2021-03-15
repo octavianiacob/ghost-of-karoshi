@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     //Config
     [SerializeField] float runSpeed = 20f;
     [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] Vector2 deathKick = new Vector2(20f, 70f);
     //State
     bool isAlive = true;
 
     //Component references;
     Rigidbody2D playerBody;
     Animator playerAnimator;
+    Collider2D myCollider2D;
 
     private void Run()
     {
@@ -27,6 +29,10 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        if(!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            return;
+        }
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
@@ -43,19 +49,32 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2(Mathf.Sign(playerBody.velocity.x), 1f);
         }
     }
+    
+    private void Die()
+    {
+        if(myCollider2D.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        {
+            isAlive = false;
+            playerAnimator.SetTrigger("Dying");
+            GetComponent<Rigidbody2D>().velocity = deathKick;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        myCollider2D = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!isAlive) { return; }
         Run();
         Jump();
         FlipSprite();
+        Die();
     }
 }

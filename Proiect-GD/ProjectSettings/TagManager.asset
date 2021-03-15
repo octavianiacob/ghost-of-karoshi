@@ -15,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Hazards
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1167787401
+    locked: 0
+  - name: Hazards
+    uniqueID: 3954241041
     locked: 0
   - name: Player
     uniqueID: 3394847967
