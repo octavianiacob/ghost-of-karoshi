@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -57,7 +58,16 @@ public class Player : MonoBehaviour
             isAlive = false;
             playerAnimator.SetTrigger("Dying");
             GetComponent<Rigidbody2D>().velocity = deathKick;
+                StartCoroutine(LoadNextLevel());
         }
+    }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
     // Start is called before the first frame update
