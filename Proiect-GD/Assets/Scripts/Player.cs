@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if(!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Boxes")))
         {
             return;
         }
