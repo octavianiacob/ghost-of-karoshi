@@ -23,3 +23,7 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
+- path: Assets/Levels/Level 6.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0

@@ -64,10 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\ResetLevel.cs" />
-    <Compile Include="Assets\Scripts\TriggerPlateInteractionWithBlocks.cs" />
     <None Include="Assets\Industrial Platformer\Spritesheet\platformIndustrial_sheet@2.xml" />
     <None Include="Assets\Industrial Platformer\Spritesheet\platformIndustrial_sheet.xml" />
     <None Include="Assets\Industrial Platformer\License.txt" />

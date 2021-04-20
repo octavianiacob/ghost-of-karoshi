@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 20f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] Vector2 deathKick = new Vector2(20f, 70f);
+    [SerializeField] Transform firepoint;
     //State
     bool isAlive = true;
+    static bool isFacingRight;
 
     //Component references;
     Rigidbody2D playerBody;
@@ -45,10 +47,30 @@ public class Player : MonoBehaviour
     private void FlipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(playerBody.velocity.x) > Mathf.Epsilon;
+
         if(playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2(Mathf.Sign(playerBody.velocity.x), 1f);
+            float a = playerBody.velocity.x;
+            transform.localScale = new Vector2(Mathf.Sign(a), 1f);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if(isFacingRight == true)
+            {
+                firepoint.transform.Rotate(0f, 180f, 0f);
+                isFacingRight = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (isFacingRight == false)
+            {
+                firepoint.transform.Rotate(0f, 180f, 0f);
+                isFacingRight = true;
+            }
+        }
+
     }
     
     private void Die()
@@ -76,6 +98,7 @@ public class Player : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         myCollider2D = GetComponent<Collider2D>();
+        isFacingRight = true;
     }
 
     // Update is called once per frame
