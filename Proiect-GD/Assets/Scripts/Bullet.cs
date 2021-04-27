@@ -29,6 +29,30 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (bulletCollider.IsTouchingLayers(LayerMask.GetMask("tram-left")))
+        {
+            print("tramp");
+            bulletRigidbody.velocity = transform.right * -speed;
+        }
+
+        if (bulletCollider.IsTouchingLayers(LayerMask.GetMask("tram-right")))
+        {
+            print("tramp");
+            bulletRigidbody.velocity = transform.right * speed;
+        }
+
+        if (bulletCollider.IsTouchingLayers(LayerMask.GetMask("tram-up")))
+        {
+            print("tramp");
+            bulletRigidbody.velocity = transform.up * speed;
+        }
+
+        if (bulletCollider.IsTouchingLayers(LayerMask.GetMask("tram-down")))
+        {
+            print("tramp");
+            bulletRigidbody.velocity = transform.up * -speed;
+        }
     }
 
 //private void OnTriggerEnter2D()

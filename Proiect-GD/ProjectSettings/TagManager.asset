@@ -19,11 +19,11 @@ TagManager:
   - Hazards
   - Boxes
   - TriggerPlates
-  - 
-  - 
-  - 
-  - 
-  - 
+  - tram-left
+  - tram-right
+  - tram-up
+  - tram-down
+  - Bullets
   - 
   - 
   - 
